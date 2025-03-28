@@ -1,12 +1,24 @@
-# Kubernetes(minikube)-springboot
+# ☸️ Kubernetes(minikube)-springboot-deploy
 
 <br>
 
 ## 🧾 프로젝트 소개
+이 프로젝트는 Spring Boot 애플리케이션을 컨테이너화하고, Minikube 기반의 Kubernetes 클러스터에서 NodePort 및 LoadBalancer 서비스를 통해 배포하는 실습 프로젝트입니다. <br>
+
+개발자가 직접 만든 Docker 이미지를 Docker Hub에 업로드한 후, Kubernetes에 배포하고 클러스터 외부에서 접근하는 과정을 실습하며,
+CI/CD 초기 흐름과 클라우드 네이티브 애플리케이션 배포 구조에 대한 이해를 높이는 것을 목표로 합니다.
 
 <br>
 
-### ⚙️ 환경 설정?
+### ⚙️ 개발 환경
+| 항목               | 내용 |
+|--------------------|------|
+| 운영체제 (OS)       | Ubuntu 24.04.2 LTS |
+| 가상화 소프트웨어   | VMware |
+| 컨테이너 및 오케스트레이션 | Kubernetes (Minikube), docker |
+| 언어 및 프레임워크  | Java 17, Spring Boot |
+| 빌드 도구           | Gradle |
+| 배포 방식           | NodePort, LoadBalancer |
 
 <br>
 
@@ -21,7 +33,7 @@
 
 
 ### 2) Dockerfile 생성 & 빌드
-> dockerfile 하는 이유
+> 이미지를 빌드하는 코드를 Dockerfile에 넣어 실행합니다. 
 
 - Dockerfile
   ```
@@ -58,8 +70,8 @@ docker login
 
 
 ### 2) docker tag
-현재 springappimg 라는 이름의 이미지 파일이 생성됨. <br>
-tag 붙여서 dockerhub에 올릴 준비
+현재 springappimg 라는 이름의 이미지 파일이 생성되어 있습니다. <br>
+docker hub에 이미지를 업로드 할 때 ```docker push``` 명령을 사용하는데, 이미지에 정확한 저장소 경로가 붙어 있어야 작동이 되므로, tag를 붙여줘야 합니다.
 
 ```
 # docker tag <이미지명> <docker username>/<이미지명>:태그
@@ -83,7 +95,8 @@ docker tag springappimg ssoyeonni/springappimg:1.1
 <br>
 
 ## 🔗 3. minikube - NodePort type
-> nodeport 가 뭔지
+**외부에서 클러스터 내부의 애플리케이션(pod)로 접근하는 방법**에는 **NodePort**와 **LoadBalancer**가 있습니다.<br>
+그 중 **minikube**는 Kubernetes 클러스터의 각 노드의 포트를 열어 외부에서 직접 접근할 수 있도록 하는 방식입니다.
 
 ### 1) spring-nodeport.yaml
 ```
@@ -119,7 +132,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30080
+      nodePort: 30080     # 30000 ~ 32767 가능
   type: NodePort
 
 ```
@@ -165,6 +178,7 @@ kubectl get all
 <br>
 
 ## 🪢 4. minikube - LoadBalancer type
+**LoadBalancer**는 클라우드 제공자의 로드밸런서를 자동으로 생성해서 클러스터 외부에서 Pod로 접근할 수 있게 해주는 Service 타입입니다.
 
 ### 1) spring-loadbalancer.yaml
 ```
