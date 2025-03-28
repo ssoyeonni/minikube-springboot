@@ -2,11 +2,11 @@
 
 <br>
 
-## 프로젝트 소개
+## 🧾 프로젝트 소개
 
 <br>
 
-### 환경 설정?
+### ⚙️ 환경 설정?
 
 <br>
 
@@ -43,7 +43,7 @@
 
 <br>
 
-## 2. docker hub에 이미지 업로드
+## 🐳 2. docker hub에 이미지 업로드
 - 태그 붙인 이미지를 업로드
 ```
 docker push ssoyeonni/springappimg:1.1
@@ -77,6 +77,7 @@ docker tag springappimg ssoyeonni/springappimg:1.1
   ```
 
 - 업로드 확인
+  
   <img src="https://github.com/user-attachments/assets/b14add21-91b2-4d71-8246-bdbf93d93516" width="600" />
 
 <br>
