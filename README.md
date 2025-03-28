@@ -1,5 +1,4 @@
-# ☸️ Kubernetes(minikube)-springboot-deploy
-
+# ☸️ Kubernetes(Minikube) 기반 Spring Boot 배포
 <br>
 
 ## 🧾 프로젝트 소개
