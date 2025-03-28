@@ -10,7 +10,7 @@
 
 <br>
 
-## 1. springboot 애플리케이션 이미지 생성
+## 📦 1. springboot 애플리케이션 이미지 생성
 
 ### 1) jar 파일 생성
 > Run As -> Run Configuration -> Gradle Task -> New_configuration
@@ -82,7 +82,7 @@ docker tag springappimg ssoyeonni/springappimg:1.1
 
 <br>
 
-## 3. minikube - NodePort type
+## 🔗 3. minikube - NodePort type
 > nodeport 가 뭔지
 
 ### 1) spring-nodeport.yaml
@@ -164,7 +164,7 @@ kubectl get all
 
 <br>
 
-## 4. minikube - LoadBalancer type
+## 🪢 4. minikube - LoadBalancer type
 
 ### 1) spring-loadbalancer.yaml
 ```
@@ -246,8 +246,8 @@ kubectl get all
   <img src="https://github.com/user-attachments/assets/92b41efa-2e59-467a-a65c-ee0f44e3aff4" width="600" />
 
 
-## 트러블슈팅
-### 1. pod가 CrashLoopBackOff 상태인 문제
+## 💣 트러블슈팅
+### ❌ 1) pod가 CrashLoopBackOff 상태인 문제
    <img src="https://github.com/user-attachments/assets/c238e95b-c358-47ae-8f51-c77577fb6675" width="600" />
 
   - 원인: Dockerfile에서 복사한 app.jar로 실행해야하는데 springapp.jar로 실행시켰어서 에러
@@ -267,7 +267,7 @@ kubectl get all
     ```
     - 에러
       
-### 2. Dockerfile을 수정하고 재빌드해도 여전히 springapp.jar로 실행하려함
+### ❌ 2) Dockerfile을 수정하고 재빌드해도 여전히 springapp.jar로 실행하려함
   - 해결법: docker hub에 이미지 업로드 시 버전을 다르게 줌 (1.0 -> 1.1)
     <img src="https://github.com/user-attachments/assets/bd4f1af0-48c5-439a-8bbe-5758197cbe10" width="600" />
       - status가 Running으로 됨. 성공!!
